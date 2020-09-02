@@ -1,0 +1,8 @@
+[package]
+name = "rust-perf-demo"
+version = "0.1.0"
+authors = ["Viktor Chvatal <viktor@chvatal.name>"]
+edition = "2018"
+
+[dependencies]
+num-traits = "0.2.8"

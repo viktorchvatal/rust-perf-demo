@@ -1,4 +1,4 @@
-use std::cmp;
+use core::cmp;
 
 #[inline(never)]
 pub fn cmp_gt_and(in1: &[i16], in2: &[i16], destination: &mut [bool]) {
@@ -14,15 +14,15 @@ pub fn cmp_gt_and(in1: &[i16], in2: &[i16], destination: &mut [bool]) {
 }
 
 fn main() {
-    let len = 100;
-    let a: Vec<i16> = (1..len).collect();
-    let b: Vec<i16> = (1..len).map(|x| len - x).collect();
-    let mut result = vec![false; len as usize];
+    const LEN: usize = 100;
+    let a: [i16; LEN] = [0; LEN];
+    let b: [i16; LEN] = [1; LEN];
+    let mut result: [bool; LEN] = [false; LEN];
 
     for _ in 0..100*1000*1000 {
         cmp_gt_and(&a, &b, &mut result);
     }
 
-    let sum: i32 = b.into_iter().map(|x| x as i32).sum();
+    let sum: i32 = result.iter().map(|&x| if x {1} else {2}).sum();
     std::process::exit(sum);
 }
